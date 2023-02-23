@@ -1,0 +1,10 @@
+{
+    "cSpell.words": [
+        "posicao"
+    ],
+    "files.associations": {
+        "stdbool.h": "c",
+        "utils.h": "c",
+        "color.h": "c"
+    }
+}
