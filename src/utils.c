@@ -88,3 +88,17 @@ void inserirItem(char posicao, char symbol, char matrix[3][3]) {
     }
   }
 }
+
+void fazerJogada(int posicao, char matriz[3][3], char simbolo) {
+  while (true) {
+    printf("Posição: ");
+    scanf("%d", &posicao);
+    setbuf(stdin, NULL);
+    if (casaEstaVazia(posicao, matriz)) {
+      break;
+    }
+
+    printf("Posição já ocupada\n");
+  }
+  inserirItem(posicao + '0', simbolo, matriz);
+}
