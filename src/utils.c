@@ -28,6 +28,7 @@ void preencherMatriz3x3(char matrix[3][3]) {
 bool casaEstaVazia(int posicao, char matriz[3][3]) {
   char symbol;
 
+  // Converte o número de 1 a 8 em uma posição da matriz
   switch (posicao) {
   case 0:
     symbol = matriz[0][0];
@@ -90,15 +91,22 @@ void inserirItem(char posicao, char symbol, char matrix[3][3]) {
 }
 
 void fazerJogada(int posicao, char matriz[3][3], char simbolo) {
+  // Enquanto a casa não estiver vazia, ele não pode inserir
   while (true) {
     printf("Posição: ");
     scanf("%d", &posicao);
     setbuf(stdin, NULL);
+
     if (casaEstaVazia(posicao, matriz)) {
       break;
     }
 
     printf("Posição já ocupada\n");
   }
+
+  // (posicao + '0') => converte int para char
   inserirItem(posicao + '0', simbolo, matriz);
+
+  limpar();
+  mostrarMatriz3x3(matriz);
 }
