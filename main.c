@@ -1,3 +1,4 @@
+#include <stdbool.h> // Para usar o tipo booleano
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -6,14 +7,17 @@
 int main() {
   int posicao;
   char jogo[3][3];
+  char simbolo = 'X';
 
   limpar();
 
   preencherMatriz3x3(jogo);
   mostrarMatriz3x3(jogo);
 
-  fazerJogada(posicao, jogo, 'O');
-  fazerJogada(posicao, jogo, 'X');
+  while (true) {
+    fazerJogada(posicao, jogo, simbolo);
+    simbolo = trocarSimbolo(simbolo);
+  }
 
   return 0;
 }

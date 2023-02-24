@@ -90,23 +90,30 @@ void inserirItem(char posicao, char symbol, char matrix[3][3]) {
   }
 }
 
-void fazerJogada(int posicao, char matriz[3][3], char simbolo) {
+void fazerJogada(int scanPosicao, char matriz[3][3], char simbolo) {
   // Enquanto a casa não estiver vazia, ele não pode inserir
   while (true) {
     printf("Posição: ");
-    scanf("%d", &posicao);
+    scanf("%d", &scanPosicao);
     setbuf(stdin, NULL);
 
-    if (casaEstaVazia(posicao, matriz)) {
+    if (casaEstaVazia(scanPosicao, matriz)) {
       break;
     }
 
     printf("Posição já ocupada\n");
   }
 
-  // (posicao + '0') => converte int para char
-  inserirItem(posicao + '0', simbolo, matriz);
+  // (scanPosicao + '0') => converte int para char
+  inserirItem(scanPosicao + '0', simbolo, matriz);
 
   limpar();
   mostrarMatriz3x3(matriz);
+}
+
+char trocarSimbolo(char simbolo) {
+  if (simbolo == 'X') {
+    return 'O';
+  }
+  return 'X';
 }
