@@ -17,6 +17,11 @@ int main() {
   while (true) {
     fazerJogada(posicao, jogo, simbolo);
     simbolo = trocarSimbolo(simbolo);
+
+    if (verificarFimDoJogo(jogo)) {
+      printf("Fim de jogo\n");
+      break;
+    }
   }
 
   return 0;

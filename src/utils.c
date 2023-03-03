@@ -117,3 +117,18 @@ char trocarSimbolo(char simbolo) {
   }
   return 'X';
 }
+
+bool verificarFimDoJogo(char matriz[3][3]) {
+  // Testa as linhas para ver se tem 3 X ou 3 O
+  bool testeLinha1 =
+      matriz[0][0] == matriz[0][1] && matriz[0][1] == matriz[0][2];
+  bool testeLinha2 =
+      matriz[1][0] == matriz[1][1] && matriz[1][1] == matriz[1][2];
+  bool testeLinha3 =
+      matriz[2][0] == matriz[2][1] && matriz[2][1] == matriz[2][2];
+
+  if (testeLinha1 || testeLinha2 || testeLinha3) {
+    return true;
+  }
+  return false;
+}
