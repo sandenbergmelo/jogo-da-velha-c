@@ -14,12 +14,12 @@ void limpar() {
 #endif
 }
 
-void preencherMatriz3x3(char matrix[3][3]) {
+void preencherMatriz3x3(char matriz[3][3]) {
   int cont = 0;
   for (int i = 0; i < 3; i++) {
     for (int j = 0; j < 3; j++) {
-      // Joga o número int para a matrix convertido em char
-      matrix[i][j] = cont + '0';
+      // Joga o número int para a matriz convertido em char
+      matriz[i][j] = cont + '0';
       cont++;
     }
   }
@@ -69,22 +69,22 @@ bool casaEstaVazia(int posicao, char matriz[3][3]) {
   return true;
 }
 
-void mostrarMatriz3x3(char matrix[3][3]) {
+void mostrarMatriz3x3(char matriz[3][3]) {
   for (int i = 0; i < 3; i++) {
     for (int j = 0; j < 3; j++) {
-      printf("[ %c ]", matrix[i][j]);
+      printf("[ %c ]", matriz[i][j]);
     }
     printf("\n");
   }
 }
 
-void inserirItem(char posicao, char symbol, char matrix[3][3]) {
+void inserirItem(char posicao, char symbol, char matriz[3][3]) {
   for (int i = 0; i < 3; i++) {
     for (int j = 0; j < 3; j++) {
-      char item = matrix[i][j];
+      char item = matriz[i][j];
 
       if (item == posicao) {
-        matrix[i][j] = symbol;
+        matriz[i][j] = symbol;
       }
     }
   }
