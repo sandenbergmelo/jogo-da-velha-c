@@ -127,7 +127,7 @@ bool verificarFimDoJogo(char matriz[3][3]) {
   bool testeLinha3 =
       matriz[2][0] == matriz[2][1] && matriz[2][1] == matriz[2][2];
 
-  if (testeLinha1 || testeLinha2 || testeLinha3) {
+  if (testeLinha1 || testeLinha2 || testeLinha3) { // Se alguma linha for igual
     return true;
   }
   return false;

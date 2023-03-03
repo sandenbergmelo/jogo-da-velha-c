@@ -14,11 +14,11 @@ int main() {
   preencherMatriz3x3(jogo);
   mostrarMatriz3x3(jogo);
 
-  while (true) {
+  while (true) { // Loop infinito de jogadas
     fazerJogada(posicao, jogo, simbolo);
     simbolo = trocarSimbolo(simbolo);
 
-    if (verificarFimDoJogo(jogo)) {
+    if (verificarFimDoJogo(jogo)) { // Se o jogo acabou
       printf("Fim de jogo\n");
       break;
     }
