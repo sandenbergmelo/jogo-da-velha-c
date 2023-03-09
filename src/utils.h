@@ -1,3 +1,5 @@
+#include <stdbool.h>
+
 void preencherMatriz3x3(char matrix[3][3]);
 void mostrarMatriz3x3(char matrix[3][3]);
 bool casaEstaVazia(int posicao, char matrix[3][3]);
