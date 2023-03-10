@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "color.h" // Para usar cores no terminal (ex: printf(BRED "Texto" RESET))
 #include "funcs.h"
 
 void limpar() {
@@ -102,11 +103,11 @@ void fazerJogada(int scanPosicao, char matriz[3][3], char simbolo) {
     }
 
     if (scanPosicao > 9 || scanPosicao < 1) {
-      printf("Posição inválida\n");
+      printf(BRED "Posição inválida" RESET "\n");
       continue;
     }
 
-    printf("Posição já ocupada\n");
+    printf(BYEL "Casa já ocupada" RESET "\n");
   }
 
   // (scanPosicao + '0') => converte int para char

@@ -25,7 +25,6 @@ CC=gcc
 CC_FLAGS=-c         \
          -W         \
          -Wall      \
-         -pedantic
 
 # Command used at clean target
 RM = rm -rf

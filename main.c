@@ -3,6 +3,7 @@
 #include <stdlib.h>
 
 #include "./src/funcs.h"
+#include "color.h" // Para usar cores no terminal (ex: printf(BRED "Texto" RESET))
 
 int main() {
   int posicao;
@@ -19,7 +20,7 @@ int main() {
     simbolo = trocarSimbolo(simbolo);
 
     if (verificarFimDoJogo(tabuleiro)) { // Se o jogo acabou
-      printf("Fim de jogo\n");
+      printf(BGRN "Fim de jogo!" RESET "\n");
       break;
     }
   }

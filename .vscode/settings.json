@@ -1,11 +1,14 @@
 {
     "cSpell.words": [
         "ˋmakeˋ",
+        "BGRN",
+        "BYEL",
         "posicao"
     ],
     "files.associations": {
         "stdbool.h": "c",
         "utils.h": "c",
-        "color.h": "c"
+        "color.h": "c",
+        "stdio.h": "c"
     }
 }
