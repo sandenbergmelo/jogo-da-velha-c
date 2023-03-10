@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "utils.h"
+#include "funcs.h"
 
 void limpar() {
 // Limpa a tela de acordo com o sistema operacional
@@ -15,7 +15,7 @@ void limpar() {
 }
 
 void preencherMatriz3x3(char matriz[3][3]) {
-  int cont = 0;
+  int cont = 1;
   for (int i = 0; i < 3; i++) {
     for (int j = 0; j < 3; j++) {
       // Joga o número int para a matriz convertido em char
@@ -26,50 +26,49 @@ void preencherMatriz3x3(char matriz[3][3]) {
 }
 
 bool casaEstaVazia(int posicao, char matriz[3][3]) {
-  char symbol;
+  char simbolo;
 
-  // Converte o número de 1 a 8 em uma posição da matriz
+  // Converte o número de 1 a 9 em uma posição da matriz
   switch (posicao) {
-  case 0:
-    symbol = matriz[0][0];
-    break;
   case 1:
-    symbol = matriz[0][1];
+    simbolo = matriz[0][0];
     break;
   case 2:
-    symbol = matriz[0][2];
+    simbolo = matriz[0][1];
     break;
   case 3:
-    symbol = matriz[1][0];
+    simbolo = matriz[0][2];
     break;
   case 4:
-    symbol = matriz[1][1];
+    simbolo = matriz[1][0];
     break;
   case 5:
-    symbol = matriz[1][2];
+    simbolo = matriz[1][1];
     break;
   case 6:
-    symbol = matriz[2][0];
+    simbolo = matriz[1][2];
     break;
   case 7:
-    symbol = matriz[2][1];
+    simbolo = matriz[2][0];
     break;
   case 8:
-    symbol = matriz[2][2];
+    simbolo = matriz[2][1];
+    break;
+  case 9:
+    simbolo = matriz[2][2];
     break;
   default:
-    printf("Posição inválida\n");
     return false;
   }
 
-  if (symbol == 'X' || symbol == 'O') {
+  if (simbolo == 'X' || simbolo == 'O') { // Se a casa não estiver vazia
     return false;
   }
 
   return true;
 }
 
-void mostrarMatriz3x3(char matriz[3][3]) {
+void mostrarMatriz3x3(char matriz[3][3]) { // Percorre a matriz e mostra na tela
   for (int i = 0; i < 3; i++) {
     for (int j = 0; j < 3; j++) {
       printf("[%c]   ", matriz[i][j]);
@@ -78,13 +77,14 @@ void mostrarMatriz3x3(char matriz[3][3]) {
   }
 }
 
-void inserirItem(char posicao, char symbol, char matriz[3][3]) {
+void inserirItem(char posicao, char simbolo, char matriz[3][3]) {
+  // Percorre a matriz e insere o símbolo na posição desejada
   for (int i = 0; i < 3; i++) {
     for (int j = 0; j < 3; j++) {
       char item = matriz[i][j];
 
       if (item == posicao) {
-        matriz[i][j] = symbol;
+        matriz[i][j] = simbolo;
       }
     }
   }
@@ -99,6 +99,11 @@ void fazerJogada(int scanPosicao, char matriz[3][3], char simbolo) {
 
     if (casaEstaVazia(scanPosicao, matriz)) {
       break;
+    }
+
+    if (scanPosicao > 9 || scanPosicao < 1) {
+      printf("Posição inválida\n");
+      continue;
     }
 
     printf("Posição já ocupada\n");
@@ -141,11 +146,11 @@ bool verificarFimDoJogo(char matriz[3][3]) {
   bool testeDiagonalSecundaria =
       matriz[0][2] == matriz[1][1] && matriz[1][1] == matriz[2][0];
 
-  int elementos = 0;
+  int numeroDeCasasOcupadas = 0;
   for (int i = 0; i < 3; i++) { // Verifica se todas as casas estão preenchidas
     for (int j = 0; j < 3; j++) {
       if (matriz[i][j] == 'X' || matriz[i][j] == 'O') {
-        elementos++;
+        numeroDeCasasOcupadas++;
       }
     }
   }
@@ -164,7 +169,7 @@ bool verificarFimDoJogo(char matriz[3][3]) {
     return true;
   }
 
-  if (elementos == 9) { // Se todas as casas estiverem preenchidas
+  if (numeroDeCasasOcupadas == 9) { // Se todas as casas estiverem preenchidas
     return true;
   }
 
