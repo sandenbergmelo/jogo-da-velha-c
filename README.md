@@ -3,6 +3,15 @@
 ### Para compilar use o comando `make` na raiz do projeto.
 ---
 ### Para instalar o make:
-#### Debian/Ubuntu: `sudo apt install make`
-#### Fedora: `sudo dnf install make`
-#### Arch: `sudo pacman -S make`
+#### Debian/Ubuntu:
+```sh
+sudo apt install make
+```
+#### Fedora:
+```sh
+sudo dnf install make
+```
+#### Arch:
+```sh
+sudo pacman -S make
+```
