@@ -142,7 +142,7 @@ bool verificarFimDoJogo(char matriz[3][3]) {
       matriz[0][2] == matriz[1][1] && matriz[1][1] == matriz[2][0];
 
   int elementos = 0;
-  for (int i = 0; i < 3; i++) {// Verifica se todas as casas estão preenchidas
+  for (int i = 0; i < 3; i++) { // Verifica se todas as casas estão preenchidas
     for (int j = 0; j < 3; j++) {
       if (matriz[i][j] == 'X' || matriz[i][j] == 'O') {
         elementos++;
@@ -153,10 +153,12 @@ bool verificarFimDoJogo(char matriz[3][3]) {
   if (testeLinha1 || testeLinha2 || testeLinha3) { // Se alguma linha for igual
     return true;
   }
+
   if (testeColuna1 || testeColuna2 ||
       testeColuna3) { // Se alguma coluna for igual
     return true;
   }
+
   if (testeDiagonalPrincipal ||
       testeDiagonalSecundaria) { // Se alguma diagonal for igual
     return true;
