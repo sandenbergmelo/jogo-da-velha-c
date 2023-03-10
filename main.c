@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 #include "./src/funcs.h"
-#include "color.h" // Para usar cores no terminal (ex: printf(BRED "Texto" RESET))
+#include "./src/color.h" // Para usar cores no terminal (ex: printf(BRED "Texto" RESET))
 
 int main() {
   int posicao;

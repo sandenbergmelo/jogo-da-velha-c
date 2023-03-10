@@ -9,6 +9,7 @@
         "stdbool.h": "c",
         "utils.h": "c",
         "color.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "funcs.h": "c"
     }
 }
