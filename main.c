@@ -2,23 +2,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "./src/utils.h"
+#include "./src/funcs.h"
 
 int main() {
   int posicao;
-  char jogo[3][3];
+  char tabuleiro[3][3];
   char simbolo = 'X';
 
   limpar();
 
-  preencherMatriz3x3(jogo);
-  mostrarMatriz3x3(jogo);
+  preencherMatriz3x3(tabuleiro);
+  mostrarMatriz3x3(tabuleiro);
 
-  while (true) { // Loop infinito de jogadas
-    fazerJogada(posicao, jogo, simbolo);
+  while (true) { // Loop "infinito" de jogadas
+    fazerJogada(posicao, tabuleiro, simbolo);
     simbolo = trocarSimbolo(simbolo);
 
-    if (verificarFimDoJogo(jogo)) { // Se o jogo acabou
+    if (verificarFimDoJogo(tabuleiro)) { // Se o jogo acabou
       printf("Fim de jogo\n");
       break;
     }
