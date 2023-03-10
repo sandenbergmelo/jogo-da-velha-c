@@ -72,9 +72,9 @@ bool casaEstaVazia(int posicao, char matriz[3][3]) {
 void mostrarMatriz3x3(char matriz[3][3]) {
   for (int i = 0; i < 3; i++) {
     for (int j = 0; j < 3; j++) {
-      printf("[ %c ]", matriz[i][j]);
+      printf("[%c]   ", matriz[i][j]);
     }
-    printf("\n");
+    printf("\n\n");
   }
 }
 
@@ -127,8 +127,46 @@ bool verificarFimDoJogo(char matriz[3][3]) {
   bool testeLinha3 =
       matriz[2][0] == matriz[2][1] && matriz[2][1] == matriz[2][2];
 
+  // Testa as colunas para ver se tem 3 X ou 3 O
+  bool testeColuna1 =
+      matriz[0][0] == matriz[1][0] && matriz[1][0] == matriz[2][0];
+  bool testeColuna2 =
+      matriz[0][1] == matriz[1][1] && matriz[1][1] == matriz[2][1];
+  bool testeColuna3 =
+      matriz[0][2] == matriz[1][2] && matriz[1][2] == matriz[2][2];
+
+  // Testa as diagonais para ver se tem 3 X ou 3 O
+  bool testeDiagonalPrincipal =
+      matriz[0][0] == matriz[1][1] && matriz[1][1] == matriz[2][2];
+  bool testeDiagonalSecundaria =
+      matriz[0][2] == matriz[1][1] && matriz[1][1] == matriz[2][0];
+
+  int elementos = 0;
+  for (int i = 0; i < 3; i++) { // Verifica se todas as casas estão preenchidas
+    for (int j = 0; j < 3; j++) {
+      if (matriz[i][j] == 'X' || matriz[i][j] == 'O') {
+        elementos++;
+      }
+    }
+  }
+
   if (testeLinha1 || testeLinha2 || testeLinha3) { // Se alguma linha for igual
     return true;
   }
+
+  if (testeColuna1 || testeColuna2 ||
+      testeColuna3) { // Se alguma coluna for igual
+    return true;
+  }
+
+  if (testeDiagonalPrincipal ||
+      testeDiagonalSecundaria) { // Se alguma diagonal for igual
+    return true;
+  }
+
+  if (elementos == 9) { // Se todas as casas estiverem preenchidas
+    return true;
+  }
+
   return false;
 }

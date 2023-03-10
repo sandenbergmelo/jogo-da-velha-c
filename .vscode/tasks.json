@@ -8,7 +8,8 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "main.c",
-                "./src/*.c",
+                "./src/utils.c",
+                "./src/utils.h",
                 "-o",
                 "${workspaceFolder}/build/jogo-da-velha"
             ],
