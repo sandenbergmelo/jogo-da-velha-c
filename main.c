@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "./src/funcs.h"
 #include "./src/color.h" // Para usar cores no terminal (ex: printf(BRED "Texto" RESET))
+#include "./src/funcs.h"
 
 int main() {
   int posicao;
@@ -12,8 +12,8 @@ int main() {
 
   limpar();
 
-  preencherMatriz3x3(tabuleiro);
-  mostrarMatriz3x3(tabuleiro);
+  preencherTabuleiro(tabuleiro);
+  mostrarTabuleiro(tabuleiro);
 
   while (true) { // Loop "infinito" de jogadas
     fazerJogada(posicao, tabuleiro, simbolo);

@@ -15,7 +15,7 @@ void limpar() {
 #endif
 }
 
-void preencherMatriz3x3(char matriz[3][3]) {
+void preencherTabuleiro(char matriz[3][3]) {
   int cont = 1;
   for (int i = 0; i < 3; i++) {
     for (int j = 0; j < 3; j++) {
@@ -69,8 +69,14 @@ bool casaEstaVazia(int posicao, char matriz[3][3]) {
   return true;
 }
 
-void mostrarMatriz3x3(char matriz[3][3]) { // Percorre a matriz e mostra na tela
-  for (int i = 0; i < 3; i++) {
+void mostrarTabuleiro(char matriz[3][3]) { // Percorre a matriz e mostra na tela
+
+  // Título
+  printf( BBLU "-=-=-=-=-=-=-=-=\n");
+  printf("  Jogo da velha\n");
+  printf("-=-=-=-=-=-=-=-=\n" RESET);
+
+  for (int i = 0; i < 3; i++) { // Mostra a matriz na tela
     for (int j = 0; j < 3; j++) {
       printf("[%c]   ", matriz[i][j]);
     }
@@ -114,7 +120,7 @@ void fazerJogada(int scanPosicao, char matriz[3][3], char simbolo) {
   inserirItem(scanPosicao + '0', simbolo, matriz);
 
   limpar();
-  mostrarMatriz3x3(matriz);
+  mostrarTabuleiro(matriz);
 }
 
 char trocarSimbolo(char simbolo) {
