@@ -1,61 +1,69 @@
 ################################
-########### Makefile ###########
+########### Makefile ##########
 ################################
 
 # Make file baseada no que é ensinado neste tutorial:
 # https://embarcados.com.br/introducao-ao-makefile/
 
-
-# Name of the project
+# Nome do projeto
 PROJ_NAME=jogo-da-velha
 
-# .c files
+# Arquivos .c
 C_SOURCE=$(wildcard ./src/*.c) main.c
 
-# .h files
+# Arquivos .h
 H_SOURCE=$(wildcard ./src/*.h)
 
-# Object files
-OBJ=$(subst .c,.o,$(subst src,build,$(C_SOURCE)))
+# Arquivos objeto
+OBJ=$(patsubst ./src/%.c,./build/%.o,$(C_SOURCE))
 
-# Compiler and linker
-CC=gcc
+# Compilador e linker
+# Verifica se o clang está instalado, se não, use o gcc
+ifeq ($(shell which clang),)
+		CC=gcc
+else
+		CC=clang
+endif
 
-# Flags for compiler
+# Flags para o compilador
 CC_FLAGS=-c         \
          -W         \
          -Wall      \
 
-# Command used at clean target
+# Comando usado para o target clean
 RM = rm -rf
 
 #
-# Compilation and linking
+# Compilação e linking
 #
-all: objFolder $(PROJ_NAME)
+all: folders $(PROJ_NAME)
 
 $(PROJ_NAME): $(OBJ)
-	@ echo 'Building binary using GCC linker: $@'
-	$(CC) $^ -o $@
-	@ echo 'Finished building binary: $@'
+	@ echo 'Construindo o binário com o linker $(CC): $@'
+	$(CC) $^ -o ./bin/$@
+	@ echo 'Binário construído: $@'
 	@ echo ' '
-	@ $(RM) ./main.o
 
 ./build/%.o: ./src/%.c ./src/%.h
-	@ echo 'Building target using GCC compiler: $<'
+	@ echo 'Construindo o target com o compilador $(CC): $<'
 	$(CC) $< $(CC_FLAGS) -o $@
 	@ echo ' '
 
-./build/main.o: ./src/main.c $(H_SOURCE)
-	@ echo 'Building target using GCC compiler: $<'
-	$(CC) $< $(CC_FLAGS) -o $@
-	@ echo ' '
-
-objFolder:
-	@ mkdir -p build
+folders:
+	@ if [ ! -d "./build" ]; then mkdir build; fi
+	@ if [ ! -d "./bin" ]; then mkdir bin; fi
 
 clean:
 	@ $(RM) ./build/*.o $(PROJ_NAME) *~
 	@ rmdir build
+
+reset:
+	@ $(RM) ./build/*.o $(PROJ_NAME) *~
+	@ $(RM) build
+	@ $(RM) bin
+	@ $(RM) main.o
+
+run:
+	@ ./bin/$(PROJ_NAME)
 
 .PHONY: all clean
