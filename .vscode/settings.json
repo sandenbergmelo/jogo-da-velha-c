@@ -4,6 +4,7 @@
         "BBLU",
         "BGRN",
         "BYEL",
+        "pacman",
         "posicao"
     ],
     "files.associations": {

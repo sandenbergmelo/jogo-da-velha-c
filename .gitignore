@@ -1,6 +1,7 @@
 # Distribution / packaging
 jogo-da-velha
 build/
+bin/
 develop-eggs/
 dist/
 downloads/

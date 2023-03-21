@@ -38,30 +38,34 @@ RM = rm -rf
 #
 all: folders $(PROJ_NAME)
 
+# Cria o binário
 $(PROJ_NAME): $(OBJ)
 	@ echo 'Construindo o binário com o linker $(CC): $@'
 	$(CC) $^ -o ./bin/$@
 	@ echo 'Binário construído: $@'
 	@ echo ' '
 
+# Cria os arquivos objeto
 ./build/%.o: ./src/%.c ./src/%.h
 	@ echo 'Construindo o target com o compilador $(CC): $<'
 	$(CC) $< $(CC_FLAGS) -o $@
 	@ echo ' '
 
+# Cria as pastas build e bin
 folders:
 	@ if [ ! -d "./build" ]; then mkdir build; fi
 	@ if [ ! -d "./bin" ]; then mkdir bin; fi
 
+# Limpa os arquivos objeto
 clean:
 	@ $(RM) ./build/*.o $(PROJ_NAME) *~
 	@ rmdir build
 
+# Limpa os arquivos objeto e o binário
 reset:
 	@ $(RM) ./build/*.o $(PROJ_NAME) *~
 	@ $(RM) build
 	@ $(RM) bin
-	@ $(RM) main.o
 
 run:
 	@ ./bin/$(PROJ_NAME)
