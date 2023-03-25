@@ -1,6 +1,7 @@
 #include <stdbool.h> // Para usar o tipo booleano
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "color.h" // Para usar cores no terminal (ex: printf(BRED "Texto" RESET))
 #include "funcs.h"
@@ -73,7 +74,8 @@ bool casaEstaVazia(int posicao, char tabuleiro[3][3]) {
   return true;
 }
 
-void mostrarTabuleiro(char tabuleiro[3][3]) { // Percorre a matriz e mostra na tela
+void mostrarTabuleiro(char tabuleiro[3][3]) {
+  // Percorre a matriz e mostra na tela
 
   // Título
   printf(BBLU "-=-=-=-=-=-=-=-=-\n");
@@ -101,10 +103,12 @@ void inserirItem(char posicao, char simbolo, char tabuleiro[3][3]) {
   }
 }
 
-void fazerJogada(int scanPosicao, char tabuleiro[3][3], char simbolo) {
+void fazerJogada(int scanPosicao, char tabuleiro[3][3], char simbolo,
+                 char jogador[20]) {
+
   // Enquanto a casa não estiver vazia, ele não pode inserir
   while (true) {
-    printf("Posição: ");
+    printf("Jogador %s (%c)\nEscolha uma posição: ", jogador, simbolo);
     scanf("%d", &scanPosicao);
     setbuf(stdin, NULL);
 
@@ -113,11 +117,11 @@ void fazerJogada(int scanPosicao, char tabuleiro[3][3], char simbolo) {
     }
 
     if (scanPosicao > 9 || scanPosicao < 1) {
-      printf(BRED "Posição inválida" RESET "\n");
+      printf(BRED "Posição inválida" RESET "\n\n");
       continue;
     }
 
-    printf(BYEL "Casa já ocupada" RESET "\n");
+    printf(BYEL "Casa já ocupada" RESET "\n\n");
   }
 
   // (scanPosicao + '0') => converte int para char
@@ -134,55 +138,84 @@ char trocarSimbolo(char simbolo) {
   return 'X';
 }
 
-bool verificarFimDoJogo(char tabuleiro[3][3]) {
-  // Testa as linhas para ver se tem 3 X ou 3 O
-  bool testeLinha1 =
-      tabuleiro[0][0] == tabuleiro[0][1] && tabuleiro[0][1] == tabuleiro[0][2];
-  bool testeLinha2 =
-      tabuleiro[1][0] == tabuleiro[1][1] && tabuleiro[1][1] == tabuleiro[1][2];
-  bool testeLinha3 =
-      tabuleiro[2][0] == tabuleiro[2][1] && tabuleiro[2][1] == tabuleiro[2][2];
+void trocarJogador(char jogadorAtual[20], char jogador1[20],
+                   char jogador2[20]) {
 
-  // Testa as colunas para ver se tem 3 X ou 3 O
-  bool testeColuna1 =
-      tabuleiro[0][0] == tabuleiro[1][0] && tabuleiro[1][0] == tabuleiro[2][0];
-  bool testeColuna2 =
-      tabuleiro[0][1] == tabuleiro[1][1] && tabuleiro[1][1] == tabuleiro[2][1];
-  bool testeColuna3 =
-      tabuleiro[0][2] == tabuleiro[1][2] && tabuleiro[1][2] == tabuleiro[2][2];
+  if (strcmp(jogadorAtual, jogador1) == 0) {
+    strcpy(jogadorAtual, jogador2);
+  } else {
+    strcpy(jogadorAtual, jogador1);
+  }
+}
 
-  // Testa as diagonais para ver se tem 3 X ou 3 O
-  bool testeDiagonalPrincipal =
-      tabuleiro[0][0] == tabuleiro[1][1] && tabuleiro[1][1] == tabuleiro[2][2];
-  bool testeDiagonalSecundaria =
-      tabuleiro[0][2] == tabuleiro[1][1] && tabuleiro[1][1] == tabuleiro[2][0];
-
-  int numeroDeCasasOcupadas = 0;
-  for (int i = 0; i < 3; i++) { // Verifica se todas as casas estão preenchidas
+bool tabuleiroEstaCheio(char tabuleiro[3][3]) {
+  for (int i = 0; i < 3; i++) {
     for (int j = 0; j < 3; j++) {
-      if (tabuleiro[i][j] == 'X' || tabuleiro[i][j] == 'O') {
-        numeroDeCasasOcupadas++;
+      if (tabuleiro[i][j] != 'X' && tabuleiro[i][j] != 'O') {
+        return false;
       }
     }
   }
+  return true;
+}
 
-  if (testeLinha1 || testeLinha2 || testeLinha3) { // Se alguma linha for igual
+void verificarGanhador(char simbolo, char jogador1[20], char jogador2[20]) {
+  if (simbolo == 'X') {
+    printf(BGRN "O jogador %s ganhou!" RESET "\n", jogador1);
+  } else {
+    printf(BGRN "O jogador %s ganhou!" RESET "\n", jogador2);
+  }
+}
+
+bool jogoAcabou(char tabuleiro[3][3], char simbolo, char jogador1[20],
+                char jogador2[20]) {
+
+  // Verifica todas as linhas
+  for (int i = 0; i < 3; i++) {
+    if (tabuleiro[i][0] == tabuleiro[i][1] &&
+        tabuleiro[i][1] == tabuleiro[i][2]) {
+
+      // Verifica quem ganhou
+      verificarGanhador(simbolo, jogador1, jogador2);
+      return true;
+    }
+  }
+
+  // Verifica todas as colunas
+  for (int i = 0; i < 3; i++) {
+    if (tabuleiro[0][i] == tabuleiro[1][i] &&
+        tabuleiro[1][i] == tabuleiro[2][i]) {
+
+      // Verifica quem ganhou
+      verificarGanhador(simbolo, jogador1, jogador2);
+      return true;
+    }
+  }
+
+  // Verifica a diagonal principal
+  if (tabuleiro[0][0] == tabuleiro[1][1] &&
+      tabuleiro[1][1] == tabuleiro[2][2]) {
+
+    // Verifica quem ganhou
+    verificarGanhador(simbolo, jogador1, jogador2);
     return true;
   }
 
-  if (testeColuna1 || testeColuna2 ||
-      testeColuna3) { // Se alguma coluna for igual
+  // Verifica a diagonal secundária
+  if (tabuleiro[0][2] == tabuleiro[1][1] &&
+      tabuleiro[1][1] == tabuleiro[2][0]) {
+
+    // Verifica quem ganhou
+    verificarGanhador(simbolo, jogador1, jogador2);
     return true;
   }
 
-  if (testeDiagonalPrincipal ||
-      testeDiagonalSecundaria) { // Se alguma diagonal for igual
+  // Verifica se deu velha
+  if (tabuleiroEstaCheio(tabuleiro)) {
+    printf(BYEL "Deu velha!" RESET "\n");
     return true;
   }
 
-  if (numeroDeCasasOcupadas == 9) { // Se todas as casas estiverem preenchidas
-    return true;
-  }
-
+  // Se o jogo não acabou
   return false;
 }

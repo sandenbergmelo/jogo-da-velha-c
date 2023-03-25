@@ -12,6 +12,7 @@
         "utils.h": "c",
         "color.h": "c",
         "stdio.h": "c",
-        "funcs.h": "c"
-    }
+        "funcs.h": "c",
+        "typeinfo": "c"
+    },
 }
