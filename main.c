@@ -14,8 +14,11 @@ int main() {
 
   printf("Nome do jogador 1 (X): ");
   scanf("%s", jogador1);
+  setbuf(stdin, NULL);
+
   printf("Nome do jogador 2 (O): ");
   scanf("%s", jogador2);
+  setbuf(stdin, NULL);
 
   limpar();
 
