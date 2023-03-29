@@ -9,15 +9,17 @@
 int main() {
   int posicao;
   char tabuleiro[3][3];
-  char jogadorAtual[20], jogador1[20], jogador2[20];
+  char jogadorAtual[30], jogador1[30], jogador2[30];
   char simbolo = 'X';
 
+  titulo();
+
   printf("Nome do jogador 1 (X): ");
-  scanf("%s", jogador1);
+  scanf("%[^\n]s", jogador1);
   setbuf(stdin, NULL);
 
   printf("Nome do jogador 2 (O): ");
-  scanf("%s", jogador2);
+  scanf("%[^\n]s", jogador2);
   setbuf(stdin, NULL);
 
   limpar();

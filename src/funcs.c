@@ -16,6 +16,12 @@ void limpar() {
 #endif
 }
 
+void titulo() {
+  printf(BBLU "-=-=-=-=-=-=-=-=-\n");
+  printf("  Jogo da velha\n");
+  printf("-=-=-=-=-=-=-=-=-\n" RESET);
+}
+
 void preencherTabuleiro(char tabuleiro[3][3]) {
   /*
    * Preenche a matriz com números de 1 a 9
@@ -77,10 +83,7 @@ bool casaEstaVazia(int posicao, char tabuleiro[3][3]) {
 void mostrarTabuleiro(char tabuleiro[3][3]) {
   // Percorre a matriz e mostra na tela
 
-  // Título
-  printf(BBLU "-=-=-=-=-=-=-=-=-\n");
-  printf("  Jogo da velha\n");
-  printf("-=-=-=-=-=-=-=-=-\n" RESET);
+  titulo();
 
   for (int i = 0; i < 3; i++) { // Mostra a matriz na tela
     for (int j = 0; j < 3; j++) {
@@ -104,7 +107,7 @@ void inserirItem(char posicao, char simbolo, char tabuleiro[3][3]) {
 }
 
 void fazerJogada(int scanPosicao, char tabuleiro[3][3], char simbolo,
-                 char jogador[20]) {
+                 char jogador[30]) {
 
   // Enquanto a casa não estiver vazia, ele não pode inserir
   while (true) {
@@ -138,8 +141,8 @@ char trocarSimbolo(char simbolo) {
   return 'X';
 }
 
-void trocarJogador(char jogadorAtual[20], char jogador1[20],
-                   char jogador2[20]) {
+void trocarJogador(char jogadorAtual[30], char jogador1[30],
+                   char jogador2[30]) {
 
   if (strcmp(jogadorAtual, jogador1) == 0) {
     strcpy(jogadorAtual, jogador2);
@@ -159,7 +162,7 @@ bool tabuleiroEstaCheio(char tabuleiro[3][3]) {
   return true;
 }
 
-void verificarGanhador(char simbolo, char jogador1[20], char jogador2[20]) {
+void verificarGanhador(char simbolo, char jogador1[30], char jogador2[30]) {
   if (simbolo == 'X') {
     printf(BGRN "O jogador %s ganhou!" RESET "\n", jogador1);
   } else {
@@ -167,8 +170,8 @@ void verificarGanhador(char simbolo, char jogador1[20], char jogador2[20]) {
   }
 }
 
-bool jogoAcabou(char tabuleiro[3][3], char simbolo, char jogador1[20],
-                char jogador2[20]) {
+bool jogoAcabou(char tabuleiro[3][3], char simbolo, char jogador1[30],
+                char jogador2[30]) {
 
   // Verifica todas as linhas
   for (int i = 0; i < 3; i++) {
