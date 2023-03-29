@@ -164,9 +164,9 @@ bool tabuleiroEstaCheio(char tabuleiro[3][3]) {
 
 void verificarGanhador(char simbolo, char jogador1[30], char jogador2[30]) {
   if (simbolo == 'X') {
-    printf(BGRN "O jogador %s ganhou!" RESET "\n", jogador1);
+    printf(BGRN "O jogador %s (%c) ganhou!" RESET "\n", jogador1, simbolo);
   } else {
-    printf(BGRN "O jogador %s ganhou!" RESET "\n", jogador2);
+    printf(BGRN "O jogador %s (%c) ganhou!" RESET "\n", jogador2, simbolo);
   }
 }
 

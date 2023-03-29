@@ -12,6 +12,7 @@ int main() {
   char jogadorAtual[30], jogador1[30], jogador2[30];
   char simbolo = 'X';
 
+  limpar();
   titulo();
 
   printf("Nome do jogador 1 (X): ");
