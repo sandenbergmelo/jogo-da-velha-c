@@ -1,5 +1,7 @@
 # Jogo da velha feito em C
 
+![Jogo da velha](.github/img/jogo-da-velha.png)
+
 
 Projeto realizado para a disciplina de Programação Estruturada do curso de Ciência da Computação do IFCE - Campus Iguatu.
 
