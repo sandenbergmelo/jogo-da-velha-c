@@ -21,3 +21,5 @@ sudo dnf install make
 ```sh
 sudo pacman -S make
 ```
+### Windows:
+[Instale o GnuWin](http://gnuwin32.sourceforge.net/packages/make.htm)
