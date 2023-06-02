@@ -1,5 +1,5 @@
 ################################
-########### Makefile ##########
+########### Makefile ###########
 ################################
 
 # Make file baseada no que é ensinado neste tutorial:
@@ -70,4 +70,4 @@ reset:
 run:
 	@ ./bin/$(PROJ_NAME)
 
-.PHONY: all clean
+.PHONY: all clean reset run folders
